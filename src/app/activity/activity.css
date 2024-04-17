@@ -1,0 +1,58 @@
+.box {
+    background: #f3f3f3;
+    padding: 1%;
+}
+
+.activity_content {
+    margin :20px 0;
+}
+
+@media screen and (min-width: 481px){
+    .activity_content h2{
+        font-size: 24px;
+    }
+    .activity_content h2::before,
+    .activity_content h2::after{
+        width: 20px;
+    }
+}
+@media screen and (max-width: 481px){
+    .activity_content h2{
+        font-size: 18px;
+    }
+    .activity_content h2::before,
+    .activity_content h2::after{
+        width: 16px;
+    }
+}
+
+.main {
+    transition: all .5s ease-in-out;
+}
+.activity_content h2{
+    position: relative;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.activity_content h2::after{
+    top:50%;
+    right: 15px;
+    content: "";
+    position: absolute;
+    transition: all 0.2s ease-in-out;
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-top: solid 2px #333;
+    border-right: solid 2px #333;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+.activity_content h2.close::after{    
+    position: absolute;
+    top:50%;
+    right: 15px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}

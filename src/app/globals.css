@@ -2,32 +2,331 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+* {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  height: 100%;
+  background-color: #fcfcfc;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@media screen and (min-width: 481px) {
+  /* header要素 */
+  header {
+    position: fixed;
+    height: 60px;
+    z-index: 500;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 10%;
+    background: #2e2f2f;
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+  }
+
+  .headerimage img {
+    height: 40px;
+    margin: 10px 0;
+  }
+
+  .headernav {
+    margin: 5px 20% 0 0;
+  }
+
+  .headernav li {
+    list-style: none;
+    display: inline-block;
+    margin: 10px 10px;
+  }
+
+  .headernav a {
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    font-size: 18px;
+    color: #e8ebec;
+    transition: color 0.3s;
+  }
+
+  .headernav a::after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: #4865b2;
+    transition: 0.3s;
+    transform: translateX(-50%);
+  }
+
+  .headernav a:hover::after {
+    width: 100%;
+  }
+
+  .imagelink {
+    transition: color 0.3s;
+  }
+
+  .imagelink :hover {
+    opacity: 0.85;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  /* main要素 */
+  .main {
+    margin: 0;
+    padding: 100px 10%;
+  }
+
+  h1 {
+    font-size: 28px;
+    border-bottom: solid 3px #cce4ff;
+    position: relative;
+    font-weight: normal;
+    margin: 25px 0 10px 0;
+  }
+
+  h1:after {
+    position: absolute;
+    content: " ";
+    display: block;
+    border-bottom: solid 3px #5472cd;
+    bottom: -3px;
+    width: 20%;
+  }
+
+  h2 {
+    margin: 5px 0;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  li {
+    font-size: 16px;
+  }
+
+  ol {
+    padding-left: 18px;
+  }
+
+  .main a {
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    color: #1f69ac;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+
+  .main a::after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    content: "";
+    width: 0;
+    height: 1px;
+    background-color: #1f69ac;
+    transform: translateX(-50%);
+  }
+
+  .main a:hover::after {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* header要素 */
+  header {
+    position: fixed;
+    height: 45px;
+    z-index: 500;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 5%;
+    background: #2e2f2f;
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+  }
+
+  .headerimage img {
+    height: 30px;
+    margin: 10px 0;
+  }
+
+  /*　ハンバーガーメニューボタン　*/
+  .hamburger {
+    display: block;
+    position: fixed;
+    z-index: 3;
+    right: 20px;
+    top: 20px;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .hamburger span {
+    display: block;
+    position: absolute;
+    margin: -7px 0;
+    width: 30px;
+    height: 2px;
+    left: 6px;
+    background: #bbbbbb;
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+  }
+  .hamburger span:nth-child(1) {
+    top: 10px;
+  }
+  .hamburger span:nth-child(2) {
+    top: 20px;
+  }
+  .hamburger span:nth-child(3) {
+    top: 30px;
+  }
+
+  /* スマホメニューを開いてる時のボタン */
+  .hamburger.active span:nth-child(1) {
+    top: 16px;
+    left: 6px;
+    background: #fff;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  .hamburger.active span:nth-child(2),
+  .hamburger.active span:nth-child(3) {
+    top: 16px;
+    background: #fff;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  /* メニュー背景　*/
+  .headernav {
+    position: fixed;
+    z-index: 2;
+    top: 65px;
+    left: 0;
+    color: #fff;
+    background: #262626;
+    text-align: center;
+    width: 100%;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+
+  .headernav ul {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+  }
+
+  .headernav ul li {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    transition: 0.4s all;
+  }
+  .headernav ul li:last-child {
+    padding-bottom: 0;
+  }
+  .headernav ul li:hover {
+    background: #ddd;
+  }
+
+  .headernav ul li a {
+    display: block;
+    color: #fff;
+    padding: 1em 0;
+    text-decoration: none;
+  }
+
+  /* クリックでjQueryで追加・削除 */
+  .headernav.active {
+    opacity: 100;
+    display: block;
+  }
+
+  /* main要素 */
+  .main {
+    margin: 0;
+    padding: 100px 5%;
+  }
+
+  h1 {
+    font-size: 22px;
+    border-bottom: solid 3px #cce4ff;
+    position: relative;
+    font-weight: normal;
+    margin: 25px 0 10px 0;
+  }
+
+  h1:after {
+    position: absolute;
+    content: " ";
+    display: block;
+    border-bottom: solid 3px #5472cd;
+    bottom: -3px;
+    width: 20%;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin: 5px 0;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  li {
+    font-size: 14px;
+  }
+
+  ol {
+    padding-left: 16px;
+  }
+
+  .main a {
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    color: #1f69ac;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+
+  .main a::after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    content: "";
+    width: 0;
+    height: 1px;
+    background-color: #1f69ac;
+    transform: translateX(-50%);
+  }
+
+  .main a:hover::after {
+    width: 100%;
   }
 }
