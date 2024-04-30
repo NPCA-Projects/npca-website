@@ -14,9 +14,9 @@ export default function Home() {
       <p>
         灘校パソコン研究部の連絡先です。取材依頼もこちらからお願い致します。
       </p>
-      <p>Mail：webmaster@npca.jp</p>
+      <p>Mail：contact@npca.jp</p>
       <p>
-        Twitter：<a href="https://twitter.com/nd_npca">@ND_NPCA</a>
+        𝕏(w)：<a href="https://twitter.com/nd_npca">@ND_NPCA</a>
       </p>
     </main>
   );
